@@ -11,7 +11,9 @@ export class ExchangeService {
         private readonly exchangeRepo: Repository<Exchange>,
     ) {}
 
-    async exchangeEuro(amountEur: number): Promise<number> {
+    async exchangeEuro(
+        amountEur: number,
+    ): Promise<{ convertedAmount: number }> {
         const rateKey = 'eur-pln-rate';
         const ttlMs = 60000;
 
@@ -35,7 +37,7 @@ export class ExchangeService {
         });
 
         await this.exchangeRepo.save(conversion);
-        return convertedAmount;
+        return { convertedAmount };
     }
 
     async getAllTransactions(): Promise<Exchange[]> {

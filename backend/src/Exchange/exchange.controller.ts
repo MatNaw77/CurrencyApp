@@ -14,7 +14,9 @@ export class ExchangeController {
     constructor(private readonly exchangeService: ExchangeService) {}
 
     @Post()
-    async exchangeEuro(@Body('amount') amount: number): Promise<number> {
+    async exchangeEuro(
+        @Body('amount') amount: number,
+    ): Promise<{ convertedAmount: number }> {
         try {
             return this.exchangeService.exchangeEuro(amount);
         } catch (error) {

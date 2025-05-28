@@ -9,7 +9,7 @@ export class ExchangeRateJob {
 
     constructor(private readonly exchangeRateService: ExchangeRateService) {}
 
-    @Cron(CronExpression.EVERY_10_SECONDS)
+    @Cron(CronExpression.EVERY_MINUTE)
     async handleCron() {
         try {
             const exchange_rate =
